@@ -1,20 +1,19 @@
 require_relative 'todo/sql'
 
 class Todo
-  def initialize(title: 'タイトルなし', content: '内容なし', goal_at: default_goal_at)
+  def initialize
     @sql = SQL.new('../database.yml', 'tasks')
-    create(title, content, goal_at)
   end
 
-  def destroy
-    # SQLを削除
+  def create(title: 'タイトルなし', content: '内容なし', goal_at: default_goal_at)
+    @sql.create(all_columns, [title, content, goal_at])
+  end
+
+  def destroy(id)
+    @sql.destroy(id)
   end
 
   private
-
-    def create(title, content, goal_at)
-      @sql.create(all_columns, [title, content, goal_at])
-    end
 
     def all_columns
       ['title', 'content', 'goal_at']
@@ -29,4 +28,6 @@ class Todo
     end
 end
 
-a = Todo.new
+# SQL.new('../database.yml', 'tasks').index.each do |i|
+#   puts i
+# end
