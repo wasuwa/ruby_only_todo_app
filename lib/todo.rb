@@ -1,5 +1,7 @@
 require_relative 'todo/sql'
 
+class TimePastError < StandardError; end
+
 class Todo
   def initialize
     @sql = SQL.new('../database.yml', 'tasks')
@@ -18,6 +20,7 @@ class Todo
   end
 
   def create(title: 'タイトルなし', content: '内容なし', goal_at: default_goal_at)
+    raise TimePastError, "The scheduled completion time has passed" if is_goal_at_in_past?(goal_at)
     @sql.create(all_columns, [title, content, goal_at])
   end
 
@@ -46,8 +49,12 @@ class Todo
         id:           #{task['id']}
         タイトル:     #{task['title']}
         内容:         #{task['content']}
-        完了予定時刻: #{task['goal_at']}
+        完了予定:     #{task['goal_at']}
         #{line}
       TEXT
+    end
+
+    def is_goal_at_in_past?(goal_at)
+      goal_at <= Time.now
     end
 end
