@@ -11,6 +11,12 @@ class Todo
     end
   end
 
+  def individual_display(id)
+    @sql.show(id).each do |record|
+      puts change_format_of_task(record)
+    end
+  end
+
   def create(title: 'タイトルなし', content: '内容なし', goal_at: default_goal_at)
     @sql.create(all_columns, [title, content, goal_at])
   end
@@ -45,5 +51,3 @@ class Todo
       TEXT
     end
 end
-
-Todo.new.list
