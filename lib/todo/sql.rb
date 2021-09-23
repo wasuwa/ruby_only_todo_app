@@ -12,6 +12,10 @@ class SQL
     @connect.exec("SELECT * FROM #{@table_name}")
   end
 
+  def show(id)
+    @connect.exec("SELECT * FROM #{@table_name} WHERE id = #{id};")
+  end
+
   def create(columns, values)
     sql_enabled_values = change_values_to_sql_format(values)
     insert = %(INSERT INTO #{@table_name}(#{columns.join(', ')}) VALUES(#{sql_enabled_values});)
