@@ -1,0 +1,7 @@
+db:
+  development:
+    host: localhost
+    user: suwayouta
+    password: password
+    dbname: todo
+    port: 5432
