@@ -1,1 +1,5 @@
-# ruby_only_todo_app
+# TODOアプリ
+## 背景
+『オブジェクト思考実践ガイド』から得た知識をアウトプットするため、TODOアプリを作成しました。
+
+DBは「PostgreSQL」です。
