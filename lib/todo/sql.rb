@@ -22,6 +22,10 @@ class SQL
     @connect.exec("DELETE FROM #{@table_name} WHERE id = #{id};")
   end
 
+  def all_destory
+    @connect.exec("DELETE FROM #{@table_name};")
+  end
+
   private
 
     def change_values_to_sql_format(values)
