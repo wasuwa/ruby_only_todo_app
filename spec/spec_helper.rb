@@ -97,4 +97,7 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # 全てのファイルでtodo.rbを読み込む
+  Dir[File.join(File.dirname(__FILE__), "../lib/todo.rb")].each { |f| require f }
 end

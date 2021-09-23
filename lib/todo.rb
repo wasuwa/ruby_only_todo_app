@@ -4,7 +4,7 @@ class TimePastError < StandardError; end
 
 class Todo
   def initialize
-    @sql = SQL.new('../database.yml', 'tasks')
+    @sql = SQL.new('database.yml', 'tasks')
   end
 
   def list
