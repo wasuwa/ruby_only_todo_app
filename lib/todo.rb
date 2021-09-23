@@ -2,6 +2,7 @@ require_relative 'todo/sql'
 
 class Todo
   def initialize(title: 'タイトルなし', content: '内容なし', goal_at: default_goal_at)
+    @sql = SQL.new('../database.yml', 'tasks')
     create(title, content, goal_at)
   end
 
@@ -12,8 +13,7 @@ class Todo
   private
 
     def create(title, content, goal_at)
-      sql = SQL.new('../database.yml', 'tasks')
-      sql.create(all_columns, [title, content, goal_at])
+      @sql.create(all_columns, [title, content, goal_at])
     end
 
     def all_columns
